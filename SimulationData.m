@@ -21,11 +21,11 @@ classdef SimulationData
                 p, q, rho, n, response_func, noise_std_dev)
             %SIMULATIONDATA
             % response_func must work on arrays of covariates
-            % X and Z structured so that each column of
+            % X and Z structured so that each row of
             % the covariate arrays is one sample covariate vector
-            % (a column of X will contain all
+            % (a row of X will contain all
             % the linear predictors for a single observation,
-            % and a column of Z will contain all nonparametric
+            % and a row of Z will contain all nonparametric
             % predictors for a single observation
             assert(isinteger(p) && p > 0);
             assert(isinteger(q) && q > 0);
@@ -49,11 +49,11 @@ classdef SimulationData
                         obj.p + obj.q, ...
                         1) ...
                 );
-            raw_data = mvnrnd(mu, obj.sigma, obj.n)';
-            obj.Xs = raw_data(1:obj.p, 1:obj.n);
+            raw_data = mvnrnd(mu, obj.sigma, obj.n);
+            obj.Xs = raw_data(1:obj.n, 1:obj.p);
             obj.Zs = 2 * normcdf( ...
                 raw_data( ...
-                    (obj.p + 1):(obj.p + obj.q), 1:obj.n) ...
+                    1:obj.n, (obj.p + 1):(obj.p + obj.q)) ...
                 ) - 1;
             noise = mvnrnd( ...
                 zeros(obj.n, 1), ...

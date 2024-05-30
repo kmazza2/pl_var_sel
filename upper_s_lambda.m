@@ -2,12 +2,12 @@ function val = upper_s_lambda(Z, kernel, lambda)
 %UPPER_S_LAMBDA Returns (uppercase) S_lambda(Z)
 
 sz = size(Z);
-num_params = sz(1);
-num_obs = sz(2);
+num_obs = sz(1);
+num_params = sz(2);
 
 % preconditions:
 assert(all(lambda >= 0));
-assert(sz(1) == length(lambda));
+assert(num_params == length(lambda));
 
 % implementation:
 
@@ -21,7 +21,7 @@ for i = 1:num_obs
 end
 
 % postconditions:
-assert(all(size(val) == [num_obs num_obs]));
+assert(all([num_obs num_obs] == size(val)));
 
 end
 
