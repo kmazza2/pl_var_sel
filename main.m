@@ -18,7 +18,6 @@ data = ...
         noise_std_dev ...
     );
 %  DEBUG BEGIN
-Z = data.Zs;
 kern = @(x) gauss_kern(x);
 lambda = ones(q, 1);
 gamma = ones(p, 1);

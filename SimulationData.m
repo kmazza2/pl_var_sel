@@ -8,12 +8,10 @@ classdef SimulationData
         n
         response_func
         noise_std_dev
-        % named "exes", "whys", and "zees" in 
-        % the Haskell convention
         sigma
-        Xs
-        Ys
-        Zs
+        X
+        Y
+        Z
     end
     
     methods
@@ -50,8 +48,8 @@ classdef SimulationData
                         1) ...
                 );
             raw_data = mvnrnd(mu, obj.sigma, obj.n);
-            obj.Xs = raw_data(1:obj.n, 1:obj.p);
-            obj.Zs = 2 * normcdf( ...
+            obj.X = raw_data(1:obj.n, 1:obj.p);
+            obj.Z = 2 * normcdf( ...
                 raw_data( ...
                     1:obj.n, (obj.p + 1):(obj.p + obj.q)) ...
                 ) - 1;
@@ -59,7 +57,7 @@ classdef SimulationData
                 zeros(obj.n, 1), ...
                 obj.noise_std_dev * eye(obj.n) ...
             )';
-            obj.Ys = response_func(obj.Xs, obj.Zs) + noise;
+            obj.Y = response_func(obj.X, obj.Z) + noise;
         end
     end
 end

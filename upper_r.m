@@ -2,9 +2,9 @@ function val = upper_r(gamma, lambda, data)
 %UPPER_R Referred to as R(gamma, lambda) in the paper
 %   Makes use of the inversion identity on page 6 of the paper
 
-X = data.Xs;
-Y = data.Ys;
-Z = data.Zs;
+X = data.X;
+Y = data.Y;
+Z = data.Z;
 
 sz = size(X);
 num_obs = sz(1);
