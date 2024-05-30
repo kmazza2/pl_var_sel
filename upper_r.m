@@ -1,4 +1,4 @@
-function val = upper_r(gamma, lambda, data)
+function val = upper_r(gamma, lambda, data, kern)
 %UPPER_R Referred to as R(gamma, lambda) in the paper
 %   Makes use of the inversion identity on page 6 of the paper
 
@@ -17,7 +17,6 @@ assert(num_params == length(gamma));
 
 % implementation:
 
-kern = @(x) gauss_kern(x);
 I_n = eye(num_obs);
 I_p = eye(num_params);
 S_lambda = upper_s_lambda(Z, kern, lambda);
