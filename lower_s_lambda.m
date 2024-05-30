@@ -17,7 +17,7 @@ scale = 0;
 for i = 1:num_obs
     term = 1;
     for j = 1:num_params
-        term = term * kernel(lambda(j) * (Z(i,j) - z(j)));
+        term = term * kernel(lambda(j) * (Z(j,i) - z(j)));
     end
     scale = scale + term;
 end
@@ -26,7 +26,7 @@ vec = zeros(num_obs, 1);
 for i = 1:num_obs
     vec(i) = 1;
     for j = 1:num_params
-        vec(i) = vec(i) * kernel(lambda(j) * (Z(i,j) - z(j)));
+        vec(i) = vec(i) * kernel(lambda(j) * (Z(j,i) - z(j)));
     end
 end
 
@@ -34,7 +34,7 @@ end
 val = scale * vec;
 
 % postconditions:
-assert(length(val) == num_params);
+assert(length(val) == num_obs);
 
 end
 

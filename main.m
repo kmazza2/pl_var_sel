@@ -17,3 +17,10 @@ data = ...
         response_func, ...
         noise_std_dev ...
     );
+%  DEBUG BEGIN
+Z = data.Zs;
+kern = @(x) gauss_kern(x);
+lambda = ones(q, 1);
+my_mat = upper_s_lambda(Z, kern, lambda);
+disp(my_mat);
+%  DEBUG END

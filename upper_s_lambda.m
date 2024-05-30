@@ -11,10 +11,10 @@ assert(sz(1) == length(lambda));
 
 % implementation:
 
-val = zero(num_obs, num_obs);
+val = zeros(num_obs, num_obs);
 
 for i = 1:num_obs
-    row = lower_s_lambda(i, Z, kernel, lambda);
+    row = lower_s_lambda(uint64(i), Z, kernel, lambda);
     for j = 1:num_obs
         val(i, j) = row(j);
     end
