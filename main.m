@@ -1,7 +1,7 @@
 p = uint64(5);
 q = uint64(3);
 rho = 0.5;
-n = uint64(100);
+n = uint64(50);
 response_func = @(X, Z) ...
     ( ...
         X(:,2) + X(:,4) + ...
@@ -19,8 +19,11 @@ data = ...
     );
 %  DEBUG BEGIN
 kern = @(x) gauss_kern(x);
-lambda = ones(q, 1);
-gamma = ones(p, 1);
-my_val = optim_3(data, 2, 3, kern);
-disp(my_val);
+t1 = 1;
+t2 = 1;
+[gamma, lambda] = optim_3(data, t1, t2, kern);
+disp('gamma:')
+disp(gamma)
+disp('lambda:')
+disp(lambda)
 %  DEBUG END
